@@ -1,10 +1,12 @@
 function lbp_fea = dense_vl_lbp( I_gray,wndSize )
 %dense_vl_lbp High Dense LBP implement by Memono
 %
-%   Make padding to extract LBP for every pixel.
+%   Make padding and sliding window to extract LBP for every pixel.
 %   Input: 
 %       I_gray:     Gray image 
 %       wndSize:    Window size (should be odd)
+%   Output:
+%       lbp_fea:    a matrix with LBP feature
 
 % empty input
 if nargin < 1
@@ -30,7 +32,7 @@ LBP_Z = 58;
 h = size(I_gray,1);
 w = size(I_gray,2);
 
-% frameh(or w) is equal to the n that (n>=h & n%wndSize==0).
+% frameh(or framew) is equal to the n that (n>=h & n%wndSize==0).
 % Delta is the size of padding placed out of the frame.
 frameh = ceil(h/wndSize)*wndSize;
 framew = ceil(w/wndSize)*wndSize;
